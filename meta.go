@@ -1,4 +1,4 @@
-package sdk
+package sdk // import "go.lsl.digital/lardwaz/sdk"
 
 //Meta represents a content type
 type Meta interface {
