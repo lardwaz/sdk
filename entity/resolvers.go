@@ -1,4 +1,4 @@
-package sdk
+package entity
 
 import "github.com/graphql-go/graphql"
 
