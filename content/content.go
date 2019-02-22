@@ -11,12 +11,12 @@ type Content interface {
 }
 
 type content struct {
-	icon        string `json:"icon"`
-	visibility  string `json:"visibility"`
-	name        string `json:"name"`
-	description string `json:"description"`
-	path        string `json:"path"`
-	pagination  string `json:"pagination"`
+	icon        string
+	visibility  string
+	name        string
+	description string
+	path        string
+	pagination  string
 }
 
 func (c content) Icon() string {
