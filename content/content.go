@@ -4,7 +4,7 @@ package content
 type Content interface {
 	Icon() string
 	Visibility() string
-	Name() string
+	Label() string
 	Description() string
 	Path() string
 	Pagination() string
@@ -13,7 +13,7 @@ type Content interface {
 type content struct {
 	icon        string
 	visibility  string
-	name        string
+	label       string
 	description string
 	path        string
 	pagination  string
@@ -27,8 +27,8 @@ func (c content) Visibility() string {
 	return c.visibility
 }
 
-func (c content) Name() string {
-	return c.name
+func (c content) Label() string {
+	return c.label
 }
 
 func (c content) Description() string {
@@ -44,13 +44,13 @@ func (c content) Pagination() string {
 }
 
 //NewContent is a helper to initialize a content instance
-func NewContent(Icon, Visibility, Name, Description, Path, Pagination string) Content {
+func NewContent(icon, visibility, label, description, path, pagination string) Content {
 	return content{
-		icon:        Icon,
-		visibility:  Visibility,
-		name:        Name,
-		description: Description,
-		path:        Path,
-		pagination:  Pagination,
+		icon:        icon,
+		visibility:  visibility,
+		label:       label,
+		description: description,
+		path:        path,
+		pagination:  pagination,
 	}
 }
