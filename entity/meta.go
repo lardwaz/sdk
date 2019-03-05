@@ -4,22 +4,19 @@ package entity
 type Meta interface {
 	Summary() string
 	Instance() interface{}
-	Resolvers() Resolvers
 }
 
 //NewMeta creates a a new meta object
-func NewMeta(summary string, instance interface{}, resolvers Resolvers) Meta {
+func NewMeta(summary string, instance interface{}) Meta {
 	return meta{
-		summary:   summary,
-		instance:  instance,
-		resolvers: resolvers,
+		summary:  summary,
+		instance: instance,
 	}
 }
 
 type meta struct {
-	summary   string
-	instance  interface{}
-	resolvers Resolvers
+	summary  string
+	instance interface{}
 }
 
 func (m meta) Summary() string {
@@ -28,8 +25,4 @@ func (m meta) Summary() string {
 
 func (m meta) Instance() interface{} {
 	return m.instance
-}
-
-func (m meta) Resolvers() Resolvers {
-	return m.resolvers
 }

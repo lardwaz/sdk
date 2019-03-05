@@ -54,17 +54,3 @@ func NewContent(Icon, Visibility, Name, Description, Path, Pagination string) Co
 		pagination:  Pagination,
 	}
 }
-
-//Field represents a field in a content type
-type Field struct {
-	Label string `json:"label"`
-	Name  string `json:"name"`
-	Edit  Widget `json:"edit"`
-	List  Widget `json:"list"`
-}
-
-//Widget represents which widget
-type Widget struct {
-	Type       string `json:"type"`
-	Visibility string `json:"visibility"`
-}
