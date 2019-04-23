@@ -1,16 +1,7 @@
 package content
 
-//Content represents a content type
-type Content interface {
-	Icon() string
-	Visibility() string
-	Label() string
-	Description() string
-	Path() string
-	Pagination() string
-}
-
-type content struct {
+//Content contains metadata on entity to allow them be treated as content types
+type Content struct {
 	icon        string
 	visibility  string
 	label       string
@@ -19,33 +10,39 @@ type content struct {
 	pagination  string
 }
 
-func (c content) Icon() string {
+//Icon to represent the content type in backoffice
+func (c Content) Icon() string {
 	return c.icon
 }
 
-func (c content) Visibility() string {
+//Visibility rules for the content type
+func (c Content) Visibility() string {
 	return c.visibility
 }
 
-func (c content) Label() string {
+//Label to use when the content type is displayed in the backoffice
+func (c Content) Label() string {
 	return c.label
 }
 
-func (c content) Description() string {
+//Description of the content type
+func (c Content) Description() string {
 	return c.description
 }
 
-func (c content) Path() string {
+//Path to full view for the content type
+func (c Content) Path() string {
 	return c.path
 }
 
-func (c content) Pagination() string {
+//Pagination rules for listing of the content type
+func (c Content) Pagination() string {
 	return c.pagination
 }
 
-//NewContent is a helper to initialize a content instance
-func NewContent(icon, visibility, label, description, path, pagination string) Content {
-	return content{
+//New is a helper to initialize a content instance
+func New(icon, visibility, label, description, path, pagination string) Content {
+	return Content{
 		icon:        icon,
 		visibility:  visibility,
 		label:       label,
