@@ -6,6 +6,7 @@ type Contentable interface {
 	Icon() string
 	Visibility() string
 	Label() string
+	LabelField() string
 	Description() string
 	Path() string
 	Pagination() string
@@ -17,6 +18,7 @@ type content struct {
 	icon           string
 	visibility     string
 	label          string
+	labelField     string
 	description    string
 	path           string
 	pagination     string
@@ -36,6 +38,11 @@ func (c content) Visibility() string {
 //Label to use when the content type is displayed in the backoffice
 func (c content) Label() string {
 	return c.label
+}
+
+//LabelField to use when the content type is displayed in the backoffice
+func (c content) LabelField() string {
+	return c.labelField
 }
 
 //Description of the content type
@@ -59,11 +66,12 @@ func (c content) ContentBuilder() bool {
 }
 
 //New is a helper to initialize a content instance
-func New(icon, visibility, label, description, path, pagination string, contentBuilder bool) Contentable {
+func New(icon, visibility, label, labelField, description, path, pagination string, contentBuilder bool) Contentable {
 	return content{
 		icon:           icon,
 		visibility:     visibility,
 		label:          label,
+		labelField:     labelField,
 		description:    description,
 		path:           path,
 		pagination:     pagination,
