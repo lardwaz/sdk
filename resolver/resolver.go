@@ -2,22 +2,22 @@ package resolver
 
 const (
 	//Single resolvable for entity
-	Single int8 = 1
+	Single uint8 = 1
 
 	//Listing resolvable for entity
-	Listing int8 = 2
+	Listing uint8 = 2
 
 	//Create resolvable for entity
-	Create int8 = 4
+	Create uint8 = 4
 
 	//Update resolvable for entity
-	Update int8 = 8
+	Update uint8 = 8
 
 	//Delete resolvable for entity
-	Delete int8 = 16
+	Delete uint8 = 16
 
 	//ALL resolve to all
-	ALL int8 = Single | Listing | Create | Update | Delete
+	ALL uint8 = Single | Listing | Create | Update | Delete
 )
 
 //Resolvable indicates if an entity can be resolved using graphql
@@ -65,7 +65,7 @@ func (r resolvable) DeleteResolver() bool {
 }
 
 //New resolvable entity
-func New(summary string, resolvers int8) Resolvable {
+func New(summary string, resolvers uint8) Resolvable {
 	return resolvable{
 		summary: summary,
 		single:  resolvers&Single != 0,

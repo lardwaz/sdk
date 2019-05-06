@@ -41,7 +41,7 @@ func (r resolvable) same(r2 resolver.Resolvable) bool {
 func TestNew(t *testing.T) {
 	tests := []struct {
 		name      string
-		resolvers int8
+		resolvers uint8
 		want      resolvable
 	}{
 		{
