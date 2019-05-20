@@ -7,6 +7,15 @@ type Time struct {
 	val  string
 }
 
+//NewTime is a constructor for Time
+func NewTime(from, to int, val string) Time {
+	return Time{
+		from: from,
+		to:   to,
+		val:  val,
+	}
+}
+
 //From is a helper function that implements Format() from Time interface
 func (t Time) From() int {
 	return t.from

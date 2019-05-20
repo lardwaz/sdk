@@ -11,6 +11,20 @@ type Timestamp struct {
 	timezone   string
 }
 
+//NewTimestamp is a constructor for Timestamp
+func NewTimestamp(now bool, fromYY int, toYY int, fromTimeHH int, toTimeHH int, format string, timezone string) Timestamp {
+
+	return Timestamp{
+		now:        now,
+		fromYY:     fromYY,
+		toYY:       toYY,
+		fromTimeHH: fromTimeHH,
+		toTimeHH:   toTimeHH,
+		format:     format,
+		timezone:   timezone,
+	}
+}
+
 func (t Timestamp) Now() bool {
 	return t.now
 }
