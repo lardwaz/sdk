@@ -47,6 +47,7 @@ func CreditCard(info string) types.CreditCardNum {
 
 //Date is a helper function that return DateI
 func Date(from, to int, format string) types.Date {
+	return types.NewDate(from, to, format)
 }
 
 //DateTime is a helper function that return DateTimeI
