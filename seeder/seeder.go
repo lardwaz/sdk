@@ -40,28 +40,48 @@ func CustomList(list string) types.CustomList {
 
 //--------- CreditCardI helper functions ----------//
 
-//CreditCard is a helper function that return CreditCardI
+//CreditCard is a helper function that return CreditCard
 func CreditCard(info string) types.CreditCardNum {
 	return types.NewCreditCardNum(info)
 }
 
-//Date is a helper function that return DateI
+//Date is a helper function that return Date
 func Date(from, to int, format string) types.Date {
 	return types.NewDate(from, to, format)
 }
 
-//DateTime is a helper function that return DateTimeI
+//DateTime is a helper function that return DateTime
 func DateTime(now bool, fromYY, toYY, fromTimeHH, toTimeHH int, format, timezone string) types.Datetime {
 	return types.NewDatetime(now, fromYY, toYY, fromTimeHH, toTimeHH, format, timezone)
 }
 
-//Time is a helper function that return TimeI
+//Time is a helper function that return Time
 func Time(from, to int, val string) types.Time {
 	return types.NewTime(from, to, val)
 
 }
 
-//Password is a helper function that return PasswordI
+//Password is a helper function that return Password
 func Password(min, max int, allowUpper, allowNumeric, allowSpecialCharacters bool) types.Password {
 	return types.NewPassword(min, max, allowUpper, allowNumeric, allowSpecialCharacters)
+}
+
+//Characters is a helper function that return CharactersN
+func Characters(val int) types.CharactersN {
+	return types.NewCharactersN(val)
+}
+
+//Digits is a helper function that return DigitsN
+func Digits(val int) types.DigitsN {
+	return types.NewDigitsN(val)
+}
+
+//Dob is a helper function that return Dob
+func Dob(from, to int, format string) types.Dob {
+	return types.NewDob(from, to, format)
+}
+
+//Paragraphs is a helper function that return ParagraphsN
+func Paragraphs(val string) types.ParagraphsN {
+	return types.NewParagraphsN(val)
 }
