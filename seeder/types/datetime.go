@@ -16,7 +16,6 @@ type Datetime struct {
 func NewDatetime(now bool,fromYY int,toYY int,fromTimeHH int,toTimeHH int,format string,timezone string) Datetime {
 
     return Datetime{
-
 		now: now,
 		fromYY: fromYY,
 		toYY: toYY,
@@ -24,8 +23,6 @@ func NewDatetime(now bool,fromYY int,toYY int,fromTimeHH int,toTimeHH int,format
 		toTimeHH: toTimeHH,
 		format: format,
 		timezone: timezone,
-
-
 	}
 }
 
