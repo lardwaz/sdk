@@ -4,31 +4,17 @@ import (
 	"go.lsl.digital/lardwaz/sdk/seeder/types"
 )
 
-type Field struct {
-	Name string
-	Type interface{}
-}
+// type Seedable struct {
+// 	seedableFields map[string]interface{}
+// }
 
-type Seedable struct {
-	seedableFields map[string]interface{}
-}
+// func (s Seedable) SeedableFields() map[string]interface{} {
+// 	return s.seedableFields
+// }
 
-func (s Seedable) SeedableFields() map[string]interface{} {
-	return s.seedableFields
-}
+func Seeded(fields ...types.Field) types.Seeded {
 
-func (s Seedable) New(fields ...Field) Seedable {
-
-	for _, field := range fields {
-		s.seedableFields[field.Name] = field.Type
-	}
-
-	return s
-}
-
-//Number is a helper function that return NumberI
-func Number(min, max, val int) types.Number {
-	return types.NewNumber(min, max, val)
+	return types.NewSeeded(fields...)
 }
 
 //--------- CustomListI helper functions ----------//
@@ -82,6 +68,31 @@ func Dob(from, to int, format string) types.Dob {
 }
 
 //Paragraphs is a helper function that return ParagraphsN
-func Paragraphs(val string) types.ParagraphsN {
+func Paragraphs(val int) types.ParagraphsN {
 	return types.NewParagraphsN(val)
+}
+
+//Words is a helper function that return WordsN
+func Words(val int) types.WordsN {
+	return types.NewWordsN(val)
+}
+
+//Random is a helper function that return Random
+func Random(rtype string) types.Random {
+	return types.NewRandom(rtype)
+}
+
+//Sentences is a helper function that return SentencesN
+func Sentences(val int) types.SentencesN {
+	return types.NewSentencesN(val)
+}
+
+//Timestamp is a helper function that return Timestamp
+func Timestamp(now bool, fromYY, toYY, fromTimeHH, toTimeHH int, format, timezone string) types.Timestamp {
+	return types.NewTimestamp(now, fromYY, toYY, fromTimeHH, toTimeHH, format, timezone)
+}
+
+//Year is a helper function that return YearI
+func Year(min, max int) types.Year {
+	return types.NewYear(min, max)
 }
