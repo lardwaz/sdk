@@ -1,5 +1,8 @@
 package types
 
+type Seedable interface {
+	SeedableFields() map[string]interface{}
+}
 type Seeded struct {
 	fields map[string]interface{}
 }

@@ -4,18 +4,14 @@ import (
 	"go.lsl.digital/lardwaz/sdk/seeder/types"
 )
 
-// type Seedable struct {
-// 	seedableFields map[string]interface{}
-// }
-
 // func (s Seedable) SeedableFields() map[string]interface{} {
 // 	return s.seedableFields
 // }
 
-func Seeded(fields ...types.Field) types.Seeded {
+// func Seeded(fields ...types.Field) types.Seeded {
 
-	return types.NewSeeded(fields...)
-}
+// 	return types.NewSeeded(fields...)
+// }
 
 //--------- CustomListI helper functions ----------//
 
