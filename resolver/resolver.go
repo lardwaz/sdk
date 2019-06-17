@@ -23,7 +23,7 @@ const (
 //Resolvable indicates if an entity can be resolved using graphql
 //and which methods to allow
 type Resolvable interface {
-	ResolverSummary() string
+	Summary() string
 	SingleResolver() bool
 	ListingResolver() bool
 	CreateResolver() bool
@@ -40,7 +40,7 @@ type resolvable struct {
 	delete  bool
 }
 
-func (r resolvable) ResolverSummary() string {
+func (r resolvable) Summary() string {
 	return r.summary
 }
 
