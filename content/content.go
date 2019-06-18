@@ -9,7 +9,7 @@ type Contentable interface {
 	LabelField() string
 	Description() string
 	Path() string
-	Pagination() string
+	Pagination() int
 	ContentBuilder() bool
 }
 
@@ -21,7 +21,7 @@ type content struct {
 	labelField     string
 	description    string
 	path           string
-	pagination     string
+	pagination     int
 	contentBuilder bool
 }
 
@@ -56,7 +56,7 @@ func (c content) Path() string {
 }
 
 //Pagination rules for listing of the content type
-func (c content) Pagination() string {
+func (c content) Pagination() int {
 	return c.pagination
 }
 
@@ -66,7 +66,7 @@ func (c content) ContentBuilder() bool {
 }
 
 //New is a helper to initialize a content instance
-func New(icon, visibility, label, labelField, description, path, pagination string, contentBuilder bool) Contentable {
+func New(icon, visibility, label, labelField, description, path string, pagination int, contentBuilder bool) Contentable {
 	return content{
 		icon:           icon,
 		visibility:     visibility,
