@@ -5,6 +5,7 @@ type Info interface {
 	Name() string
 	MachineName() string
 	Description() string
+	Logo() string
 	Author() string
 	Maintainers() []string
 	Version() string
@@ -15,6 +16,7 @@ type info struct {
 	name        string
 	machinename string
 	description string
+	logo        string
 	author      string
 	maintainers []string
 	version     string
@@ -22,11 +24,12 @@ type info struct {
 }
 
 // New returns a new Info
-func New(name, machinename, description, author string, maintainers []string, version string, depends ...string) Info {
+func New(name, machinename, description, logo, author string, maintainers []string, version string, depends ...string) Info {
 	return info{
 		name:        name,
 		machinename: machinename,
 		description: description,
+		logo:        logo,
 		author:      author,
 		maintainers: maintainers,
 		version:     version,
@@ -47,6 +50,11 @@ func (i info) MachineName() string {
 // Description returns the description of the plugin
 func (i info) Description() string {
 	return i.description
+}
+
+// Logo returns the logo of the plugin
+func (i info) Logo() string {
+	return i.logo
 }
 
 // Author returns the author of the plugin
