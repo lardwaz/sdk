@@ -4,7 +4,7 @@ import "github.com/graphql-go/graphql"
 
 type (
 	// HookFn defines the signature of <any> resolver hook function
-	HookFn func(p graphql.ResolveParams, vals interface{}) (bool, error)
+	HookFn func(p *graphql.ResolveParams, vals interface{}) (bool, error)
 
 	// HooksFn defines a map of entityname to resolver hook function
 	HooksFn map[string]HookFn
