@@ -4,7 +4,7 @@ import "github.com/graphql-go/graphql"
 
 type (
 	// SchemaHookFn defines the signature for the schema hook function
-	SchemaHookFn func(*graphql.Fields) error
+	SchemaHookFn func(graphql.Fields) error
 
 	// SchemaHooks operates on SchemaHooksFn
 	SchemaHooks interface {
