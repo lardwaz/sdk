@@ -11,7 +11,7 @@ type (
 
 	// Handlers defines a list of HandlersFn
 	Handlers interface {
-		AddHandler(path string, handler HandlerFn)
+		RegisterNewHandler(path string, handler HandlerFn)
 		Handlers() HandlersFn
 	}
 
@@ -28,7 +28,7 @@ func NewHandlers() Handlers {
 }
 
 // AddHandler adds a new handler
-func (h handlers) AddHandler(path string, handler HandlerFn) {
+func (h handlers) RegisterNewHandler(path string, handler HandlerFn) {
 	h.handlersFn[path] = handler
 }
 
