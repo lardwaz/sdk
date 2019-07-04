@@ -7,7 +7,7 @@ type (
 	HookFn func(p *graphql.ResolveParams, vals interface{}) (bool, error)
 
 	// HooksFn defines a map of entityname to resolver hook function
-	HooksFn map[string]HookFn
+	HooksFn map[string][]HookFn
 
 	// Hooks defines a list of common hooks for the various resolvers
 	Hooks interface {
@@ -66,52 +66,52 @@ func NewHooks() Hooks {
 
 // RegisterNewPreSingleHookrregister a new hook to the PreSingle hook functions
 func (h hooks) RegisterNewPreSingleHook(entityname string, hook HookFn) {
-	h.preSingleHooksFn[entityname] = hook
+	h.preSingleHooksFn[entityname] = append(h.preSingleHooksFn[entityname], hook)
 }
 
 // RegisterNewPostSingleHook register a new hook to the PostSingle hook functions
 func (h hooks) RegisterNewPostSingleHook(entityname string, hook HookFn) {
-	h.postSingleHooksFn[entityname] = hook
+	h.postSingleHooksFn[entityname] = append(h.postSingleHooksFn[entityname], hook)
 }
 
 // RegisterNewPreListingHook register a new hook to the PreListing hook functions
 func (h hooks) RegisterNewPreListingHook(entityname string, hook HookFn) {
-	h.preListingHooksFn[entityname] = hook
+	h.preListingHooksFn[entityname] = append(h.preListingHooksFn[entityname], hook)
 }
 
 // RegisterNewPostListingHookgregister a new hook to the PostListing hook functions
 func (h hooks) RegisterNewPostListingHook(entityname string, hook HookFn) {
-	h.postListingHooksFn[entityname] = hook
+	h.postListingHooksFn[entityname] = append(h.postListingHooksFn[entityname], hook)
 }
 
 // RegisterNewPreCreateHookrregister a new hook to the PreCreate hook functions
 func (h hooks) RegisterNewPreCreateHook(entityname string, hook HookFn) {
-	h.preCreateHooksFn[entityname] = hook
+	h.preCreateHooksFn[entityname] = append(h.preCreateHooksFn[entityname], hook)
 }
 
 // RegisterNewPostCreateHook register a new hook to the PostCreate hook functions
 func (h hooks) RegisterNewPostCreateHook(entityname string, hook HookFn) {
-	h.postCreateHooksFn[entityname] = hook
+	h.postCreateHooksFn[entityname] = append(h.postCreateHooksFn[entityname], hook)
 }
 
 // RegisterNewPreUpdateHookrregister a new hook to the PreUpdate hook functions
 func (h hooks) RegisterNewPreUpdateHook(entityname string, hook HookFn) {
-	h.preUpdateHooksFn[entityname] = hook
+	h.preUpdateHooksFn[entityname] = append(h.preUpdateHooksFn[entityname], hook)
 }
 
 // RegisterNewPostUpdateHook register a new hook to the PostUpdate hook functions
 func (h hooks) RegisterNewPostUpdateHook(entityname string, hook HookFn) {
-	h.postUpdateHooksFn[entityname] = hook
+	h.postUpdateHooksFn[entityname] = append(h.postUpdateHooksFn[entityname], hook)
 }
 
 // RegisterNewPreDeleteHookrregister a new hook to the PreDelete hook functions
 func (h hooks) RegisterNewPreDeleteHook(entityname string, hook HookFn) {
-	h.preDeleteHooksFn[entityname] = hook
+	h.preDeleteHooksFn[entityname] = append(h.preDeleteHooksFn[entityname], hook)
 }
 
 // RegisterNewPostDeleteHook register a new hook to the PostDelete hook functions
 func (h hooks) RegisterNewPostDeleteHook(entityname string, hook HookFn) {
-	h.postDeleteHooksFn[entityname] = hook
+	h.postDeleteHooksFn[entityname] = append(h.postDeleteHooksFn[entityname], hook)
 }
 
 // PreSingleHooksreturns a list of PreSingle hook functions
