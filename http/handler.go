@@ -1,38 +1,35 @@
 package http
 
-import "net/http"
+import "github.com/gorilla/mux"
 
 type (
-	// HandlerFn defines the signature of <any> http handler function
-	HandlerFn func(http.ResponseWriter, *http.Request)
+	// HookFn defines the signature of <any> http hook function
+	HookFn func(*mux.Router) error
 
-	// HandlersFn a map of path to handler function
-	HandlersFn map[string]HandlerFn
-
-	// Handlers defines a list of HandlersFn
-	Handlers interface {
-		RegisterNewHandler(path string, handler HandlerFn)
-		Handlers() HandlersFn
+	// Hooks defines a list of HookFn
+	Hooks interface {
+		RegisterNewHook(HookFn)
+		Hooks() []HookFn
 	}
 
-	handlers struct {
-		handlersFn HandlersFn
+	hooks struct {
+		hooksFn []HookFn
 	}
 )
 
-// NewHandlers returns a new handlers
-func NewHandlers() Handlers {
-	return handlers{
-		handlersFn: make(HandlersFn),
+// NewHooks returns a new Hooks
+func NewHooks() Hooks {
+	return &hooks{
+		hooksFn: make([]HookFn, 0),
 	}
 }
 
-// AddHandler adds a new handler
-func (h handlers) RegisterNewHandler(path string, handler HandlerFn) {
-	h.handlersFn[path] = handler
+// RegisterNewHook registers a new hook function
+func (h *hooks) RegisterNewHook(hook HookFn) {
+	h.hooksFn = append(h.hooksFn, hook)
 }
 
-// Handlers return a list of HandlersFn
-func (h handlers) Handlers() HandlersFn {
-	return h.handlersFn
+// Hooks return a list of hookFn
+func (h hooks) Hooks() []HookFn {
+	return h.hooksFn
 }
