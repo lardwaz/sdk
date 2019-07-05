@@ -16,35 +16,35 @@ type (
 	}
 
 	schemaHooks struct {
-		queryhooks    []SchemaHookFn
-		mutationhooks []SchemaHookFn
+		queryhooksFn    []SchemaHookFn
+		mutationhooksFn []SchemaHookFn
 	}
 )
 
 // NewSchemaHooks returns a new SchemaHooks
 func NewSchemaHooks() SchemaHooks {
 	return &schemaHooks{
-		queryhooks:    make([]SchemaHookFn, 0),
-		mutationhooks: make([]SchemaHookFn, 0),
+		queryhooksFn:    make([]SchemaHookFn, 0),
+		mutationhooksFn: make([]SchemaHookFn, 0),
 	}
 }
 
 // RegisterNewQueryHook
 func (s *schemaHooks) RegisterNewQueryHook(hook SchemaHookFn) {
-	s.queryhooks = append(s.queryhooks, hook)
+	s.queryhooksFn = append(s.queryhooksFn, hook)
 }
 
 // RegisterNewMutationHook
 func (s *schemaHooks) RegisterNewMutationHook(hook SchemaHookFn) {
-	s.mutationhooks = append(s.mutationhooks, hook)
+	s.mutationhooksFn = append(s.mutationhooksFn, hook)
 }
 
 // QueryHooks() returns a list of SchemaHookFn
 func (s schemaHooks) QueryHooks() []SchemaHookFn {
-	return s.queryhooks
+	return s.queryhooksFn
 }
 
 // MutationHooks() returns a list of SchemaHookFn
 func (s schemaHooks) MutationHooks() []SchemaHookFn {
-	return s.mutationhooks
+	return s.mutationhooksFn
 }
