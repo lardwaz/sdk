@@ -4,15 +4,6 @@ import (
 	"go.lsl.digital/lardwaz/sdk/seeder/types"
 )
 
-// func (s Seedable) SeedableFields() map[string]interface{} {
-// 	return s.seedableFields
-// }
-
-// func Seeded(fields ...types.Field) types.Seeded {
-
-// 	return types.NewSeeded(fields...)
-// }
-
 //--------- CustomListI helper functions ----------//
 
 //CustomList is a helper function that return CustomListI
