@@ -1,4 +1,4 @@
-package resolver
+package hook
 
 import "github.com/graphql-go/graphql"
 
@@ -63,8 +63,8 @@ type (
 	// PostDeleteHooksFn defines a map of entityname to resolver hook function
 	PostDeleteHooksFn map[string][]PostDeleteHookFn
 
-	// Hooks defines a list of common hooks for the various resolvers
-	Hooks interface {
+	// ResolverHooks defines a list of common hooks for the various resolvers
+	ResolverHooks interface {
 		RegisterNewPreSingleHook(entityname string, hook PreSingleHookFn)
 		RegisterNewPostSingleHook(entityname string, hook PostSingleHookFn)
 		RegisterNewPreListingHook(entityname string, hook PreListingHookFn)
@@ -88,7 +88,7 @@ type (
 		PostDeleteHooks() PostDeleteHooksFn
 	}
 
-	hooks struct {
+	resolverHooks struct {
 		preSingleHooksFn   PreSingleHooksFn
 		postSingleHooksFn  PostSingleHooksFn
 		preListingHooksFn  PreListingHooksFn
@@ -102,9 +102,9 @@ type (
 	}
 )
 
-// NewHooks return a new Hooks
-func NewHooks() Hooks {
-	return hooks{
+// NewResolverHooks return a new ResolverHooks
+func NewResolverHooks() ResolverHooks {
+	return resolverHooks{
 		preSingleHooksFn:   make(PreSingleHooksFn),
 		postSingleHooksFn:  make(PostSingleHooksFn),
 		preListingHooksFn:  make(PreListingHooksFn),
@@ -119,101 +119,101 @@ func NewHooks() Hooks {
 }
 
 // RegisterNewPreSingleHookrregister a new hook to the PreSingle hook functions
-func (h hooks) RegisterNewPreSingleHook(entityname string, hook PreSingleHookFn) {
-	h.preSingleHooksFn[entityname] = append(h.preSingleHooksFn[entityname], hook)
+func (r resolverHooks) RegisterNewPreSingleHook(entityname string, hook PreSingleHookFn) {
+	r.preSingleHooksFn[entityname] = append(r.preSingleHooksFn[entityname], hook)
 }
 
 // RegisterNewPostSingleHook register a new hook to the PostSingle hook functions
-func (h hooks) RegisterNewPostSingleHook(entityname string, hook PostSingleHookFn) {
-	h.postSingleHooksFn[entityname] = append(h.postSingleHooksFn[entityname], hook)
+func (r resolverHooks) RegisterNewPostSingleHook(entityname string, hook PostSingleHookFn) {
+	r.postSingleHooksFn[entityname] = append(r.postSingleHooksFn[entityname], hook)
 }
 
 // RegisterNewPreListingHook register a new hook to the PreListing hook functions
-func (h hooks) RegisterNewPreListingHook(entityname string, hook PreListingHookFn) {
-	h.preListingHooksFn[entityname] = append(h.preListingHooksFn[entityname], hook)
+func (r resolverHooks) RegisterNewPreListingHook(entityname string, hook PreListingHookFn) {
+	r.preListingHooksFn[entityname] = append(r.preListingHooksFn[entityname], hook)
 }
 
 // RegisterNewPostListingHookgregister a new hook to the PostListing hook functions
-func (h hooks) RegisterNewPostListingHook(entityname string, hook PostListingHookFn) {
-	h.postListingHooksFn[entityname] = append(h.postListingHooksFn[entityname], hook)
+func (r resolverHooks) RegisterNewPostListingHook(entityname string, hook PostListingHookFn) {
+	r.postListingHooksFn[entityname] = append(r.postListingHooksFn[entityname], hook)
 }
 
 // RegisterNewPreCreateHookrregister a new hook to the PreCreate hook functions
-func (h hooks) RegisterNewPreCreateHook(entityname string, hook PreCreateHookFn) {
-	h.preCreateHooksFn[entityname] = append(h.preCreateHooksFn[entityname], hook)
+func (r resolverHooks) RegisterNewPreCreateHook(entityname string, hook PreCreateHookFn) {
+	r.preCreateHooksFn[entityname] = append(r.preCreateHooksFn[entityname], hook)
 }
 
 // RegisterNewPostCreateHook register a new hook to the PostCreate hook functions
-func (h hooks) RegisterNewPostCreateHook(entityname string, hook PostCreateHookFn) {
-	h.postCreateHooksFn[entityname] = append(h.postCreateHooksFn[entityname], hook)
+func (r resolverHooks) RegisterNewPostCreateHook(entityname string, hook PostCreateHookFn) {
+	r.postCreateHooksFn[entityname] = append(r.postCreateHooksFn[entityname], hook)
 }
 
 // RegisterNewPreUpdateHookrregister a new hook to the PreUpdate hook functions
-func (h hooks) RegisterNewPreUpdateHook(entityname string, hook PreUpdateHookFn) {
-	h.preUpdateHooksFn[entityname] = append(h.preUpdateHooksFn[entityname], hook)
+func (r resolverHooks) RegisterNewPreUpdateHook(entityname string, hook PreUpdateHookFn) {
+	r.preUpdateHooksFn[entityname] = append(r.preUpdateHooksFn[entityname], hook)
 }
 
 // RegisterNewPostUpdateHook register a new hook to the PostUpdate hook functions
-func (h hooks) RegisterNewPostUpdateHook(entityname string, hook PostUpdateHookFn) {
-	h.postUpdateHooksFn[entityname] = append(h.postUpdateHooksFn[entityname], hook)
+func (r resolverHooks) RegisterNewPostUpdateHook(entityname string, hook PostUpdateHookFn) {
+	r.postUpdateHooksFn[entityname] = append(r.postUpdateHooksFn[entityname], hook)
 }
 
 // RegisterNewPreDeleteHookrregister a new hook to the PreDelete hook functions
-func (h hooks) RegisterNewPreDeleteHook(entityname string, hook PreDeleteHookFn) {
-	h.preDeleteHooksFn[entityname] = append(h.preDeleteHooksFn[entityname], hook)
+func (r resolverHooks) RegisterNewPreDeleteHook(entityname string, hook PreDeleteHookFn) {
+	r.preDeleteHooksFn[entityname] = append(r.preDeleteHooksFn[entityname], hook)
 }
 
 // RegisterNewPostDeleteHook register a new hook to the PostDelete hook functions
-func (h hooks) RegisterNewPostDeleteHook(entityname string, hook PostDeleteHookFn) {
-	h.postDeleteHooksFn[entityname] = append(h.postDeleteHooksFn[entityname], hook)
+func (r resolverHooks) RegisterNewPostDeleteHook(entityname string, hook PostDeleteHookFn) {
+	r.postDeleteHooksFn[entityname] = append(r.postDeleteHooksFn[entityname], hook)
 }
 
 // PreSingleHooksreturns a list of PreSingle hook functions
-func (h hooks) PreSingleHooks() PreSingleHooksFn {
-	return h.preSingleHooksFn
+func (r resolverHooks) PreSingleHooks() PreSingleHooksFn {
+	return r.preSingleHooksFn
 }
 
 // PostSingleHooks returns a list of PostSingle hook functions
-func (h hooks) PostSingleHooks() PostSingleHooksFn {
-	return h.postSingleHooksFn
+func (r resolverHooks) PostSingleHooks() PostSingleHooksFn {
+	return r.postSingleHooksFn
 }
 
 // PreListingHooks returns a list of PreListing hook functions
-func (h hooks) PreListingHooks() PreListingHooksFn {
-	return h.preListingHooksFn
+func (r resolverHooks) PreListingHooks() PreListingHooksFn {
+	return r.preListingHooksFn
 }
 
 // PostListingHooksg returns a list of PostListing hook functions
-func (h hooks) PostListingHooks() PostListingHooksFn {
-	return h.postListingHooksFn
+func (r resolverHooks) PostListingHooks() PostListingHooksFn {
+	return r.postListingHooksFn
 }
 
 // PreCreateHooksreturns a list of PreCreate hook functions
-func (h hooks) PreCreateHooks() PreCreateHooksFn {
-	return h.preCreateHooksFn
+func (r resolverHooks) PreCreateHooks() PreCreateHooksFn {
+	return r.preCreateHooksFn
 }
 
 // PostCreateHooks returns a list of PostCreate hook functions
-func (h hooks) PostCreateHooks() PostCreateHooksFn {
-	return h.postCreateHooksFn
+func (r resolverHooks) PostCreateHooks() PostCreateHooksFn {
+	return r.postCreateHooksFn
 }
 
 // PreUpdateHooksreturns a list of PreUpdate hook functions
-func (h hooks) PreUpdateHooks() PreUpdateHooksFn {
-	return h.preUpdateHooksFn
+func (r resolverHooks) PreUpdateHooks() PreUpdateHooksFn {
+	return r.preUpdateHooksFn
 }
 
 // PostUpdateHooks returns a list of PostUpdate hook functions
-func (h hooks) PostUpdateHooks() PostUpdateHooksFn {
-	return h.postUpdateHooksFn
+func (r resolverHooks) PostUpdateHooks() PostUpdateHooksFn {
+	return r.postUpdateHooksFn
 }
 
 // PreDeleteHooksreturns a list of PreDelete hook functions
-func (h hooks) PreDeleteHooks() PreDeleteHooksFn {
-	return h.preDeleteHooksFn
+func (r resolverHooks) PreDeleteHooks() PreDeleteHooksFn {
+	return r.preDeleteHooksFn
 }
 
 // PostDeleteHooks returns a list of PostDelete hook functions
-func (h hooks) PostDeleteHooks() PostDeleteHooksFn {
-	return h.postDeleteHooksFn
+func (r resolverHooks) PostDeleteHooks() PostDeleteHooksFn {
+	return r.postDeleteHooksFn
 }

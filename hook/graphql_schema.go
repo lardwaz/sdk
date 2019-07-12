@@ -1,4 +1,4 @@
-package resolver
+package hook
 
 import "github.com/graphql-go/graphql"
 
