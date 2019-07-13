@@ -1,80 +1,48 @@
 package hook
 
-import "github.com/graphql-go/graphql"
-
 type (
-	// GlobalPreSingleHookFn defines the signature of resolver pre hook function
-	GlobalPreSingleHookFn func(*graphql.ResolveParams) error
-
-	// GlobalPostSingleHookFn defines the signature of resolver post hook function
-	GlobalPostSingleHookFn func(*graphql.ResolveParams, interface{}) (interface{}, error)
-
 	// GlobalPreSingleHooksFn defines a map of entityname to resolver hook function
-	GlobalPreSingleHooksFn []GlobalPreSingleHookFn
+	GlobalPreSingleHooksFn []PreSingleHookFn
 
 	// GlobalPostSingleHooksFn defines a map of entityname to resolver hook function
-	GlobalPostSingleHooksFn []GlobalPostSingleHookFn
-
-	// GlobalPreListingHookFn defines the signature of resolver pre hook function
-	GlobalPreListingHookFn func(*graphql.ResolveParams) error
-
-	// GlobalPostListingHookFn defines the signature of resolver post hook function
-	GlobalPostListingHookFn func(*graphql.ResolveParams, []interface{}) ([]interface{}, error)
+	GlobalPostSingleHooksFn []PostSingleHookFn
 
 	// GlobalPreListingHooksFn defines a map of entityname to resolver hook function
-	GlobalPreListingHooksFn []GlobalPreListingHookFn
+	GlobalPreListingHooksFn []PreListingHookFn
 
 	// GlobalPostListingHooksFn defines a map of entityname to resolver hook function
-	GlobalPostListingHooksFn []GlobalPostListingHookFn
-
-	// GlobalPreCreateHookFn defines the signature of resolver pre hook function
-	GlobalPreCreateHookFn func(*graphql.ResolveParams) error
+	GlobalPostListingHooksFn []PostListingHookFn
 
 	// GlobalPreCreateHooksFn defines a map of entityname to resolver hook function
-	GlobalPreCreateHooksFn []GlobalPreCreateHookFn
-
-	// GlobalPostCreateHookFn defines the signature of resolver post hook function
-	GlobalPostCreateHookFn func(*graphql.ResolveParams, interface{}) (interface{}, error)
+	GlobalPreCreateHooksFn []PreCreateHookFn
 
 	// GlobalPostCreateHooksFn defines a map of entityname to resolver hook function
-	GlobalPostCreateHooksFn []GlobalPostCreateHookFn
-
-	// GlobalPreUpdateHookFn defines the signature of resolver pre hook function
-	GlobalPreUpdateHookFn func(*graphql.ResolveParams) error
-
-	// GlobalPostUpdateHookFn defines the signature of resolver post hook function
-	GlobalPostUpdateHookFn func(*graphql.ResolveParams, interface{}) (interface{}, error)
+	GlobalPostCreateHooksFn []PostCreateHookFn
 
 	// GlobalPreUpdateHooksFn defines a map of entityname to resolver hook function
-	GlobalPreUpdateHooksFn []GlobalPreUpdateHookFn
+	GlobalPreUpdateHooksFn []PreUpdateHookFn
 
 	// GlobalPostUpdateHooksFn defines a map of entityname to resolver hook function
-	GlobalPostUpdateHooksFn []GlobalPostUpdateHookFn
-
-	// GlobalPreDeleteHookFn defines the signature of resolver pre hook function
-	GlobalPreDeleteHookFn func(*graphql.ResolveParams) error
-
-	// GlobalPostDeleteHookFn defines the signature of resolver post hook function
-	GlobalPostDeleteHookFn func(*graphql.ResolveParams, interface{}) (interface{}, error)
+	GlobalPostUpdateHooksFn []PostUpdateHookFn
 
 	// GlobalPreDeleteHooksFn defines a map of entityname to resolver hook function
-	GlobalPreDeleteHooksFn []GlobalPreDeleteHookFn
+	GlobalPreDeleteHooksFn []PreDeleteHookFn
 
 	// GlobalPostDeleteHooksFn defines a map of entityname to resolver hook function
-	GlobalPostDeleteHooksFn []GlobalPostDeleteHookFn
+	GlobalPostDeleteHooksFn []PostDeleteHookFn
 
 	// GlobalResolverHooks defines a list of common hooks for the various resolvers
 	GlobalResolverHooks interface {
-		RegisterNewGlobalPreSingleHook(hook GlobalPreSingleHookFn)
-		RegisterNewGlobalPostSingleHook(hook GlobalPostSingleHookFn)
-		RegisterNewGlobalPreListingHook(hook GlobalPreListingHookFn)
-		RegisterNewGlobalPostListingHook(hook GlobalPostListingHookFn)
-		RegisterNewGlobalPreCreateHook(hook GlobalPreCreateHookFn)
-		RegisterNewGlobalPostCreateHook(hook GlobalPostCreateHookFn)
-		RegisterNewGlobalPreUpdateHook(hook GlobalPreUpdateHookFn)
-		RegisterNewGlobalPostUpdateHook(hook GlobalPostUpdateHookFn)
-		RegisterNewGlobalPreDeleteHook(hook GlobalPreDeleteHookFn)
-		RegisterNewGlobalPostDeleteHook(hook GlobalPostDeleteHookFn)
+		RegisterNewGlobalPreSingleHook(hook PreSingleHookFn)
+		RegisterNewGlobalPostSingleHook(hook PostSingleHookFn)
+		RegisterNewGlobalPreListingHook(hook PreListingHookFn)
+		RegisterNewGlobalPostListingHook(hook PostListingHookFn)
+		RegisterNewGlobalPreCreateHook(hook PreCreateHookFn)
+		RegisterNewGlobalPostCreateHook(hook PostCreateHookFn)
+		RegisterNewGlobalPreUpdateHook(hook PreUpdateHookFn)
+		RegisterNewGlobalPostUpdateHook(hook PostUpdateHookFn)
+		RegisterNewGlobalPreDeleteHook(hook PreDeleteHookFn)
+		RegisterNewGlobalPostDeleteHook(hook PostDeleteHookFn)
 
 		GlobalPreSingleHooks() GlobalPreSingleHooksFn
 		GlobalPostSingleHooks() GlobalPostSingleHooksFn
@@ -119,52 +87,52 @@ func NewGlobalResolverHooks() GlobalResolverHooks {
 }
 
 // RegisterNewGlobalPreSingleHookrregister a new hook to the PreSingle hook functions
-func (r globalResolverHooks) RegisterNewGlobalPreSingleHook(hook GlobalPreSingleHookFn) {
+func (r globalResolverHooks) RegisterNewGlobalPreSingleHook(hook PreSingleHookFn) {
 	r.globalPreSingleHooksFn = append(r.globalPreSingleHooksFn, hook)
 }
 
 // RegisterNewGlobalPostSingleHook register a new hook to the PostSingle hook functions
-func (r globalResolverHooks) RegisterNewGlobalPostSingleHook(hook GlobalPostSingleHookFn) {
+func (r globalResolverHooks) RegisterNewGlobalPostSingleHook(hook PostSingleHookFn) {
 	r.globalPostSingleHooksFn = append(r.globalPostSingleHooksFn, hook)
 }
 
 // RegisterNewGlobalPreListingHook register a new hook to the PreListing hook functions
-func (r globalResolverHooks) RegisterNewGlobalPreListingHook(hook GlobalPreListingHookFn) {
+func (r globalResolverHooks) RegisterNewGlobalPreListingHook(hook PreListingHookFn) {
 	r.globalPreListingHooksFn = append(r.globalPreListingHooksFn, hook)
 }
 
 // RegisterNewGlobalPostListingHookgregister a new hook to the PostListing hook functions
-func (r globalResolverHooks) RegisterNewGlobalPostListingHook(hook GlobalPostListingHookFn) {
+func (r globalResolverHooks) RegisterNewGlobalPostListingHook(hook PostListingHookFn) {
 	r.globalPostListingHooksFn = append(r.globalPostListingHooksFn, hook)
 }
 
 // RegisterNewGlobalPreCreateHookrregister a new hook to the PreCreate hook functions
-func (r globalResolverHooks) RegisterNewGlobalPreCreateHook(hook GlobalPreCreateHookFn) {
+func (r globalResolverHooks) RegisterNewGlobalPreCreateHook(hook PreCreateHookFn) {
 	r.globalPreCreateHooksFn = append(r.globalPreCreateHooksFn, hook)
 }
 
 // RegisterNewGlobalPostCreateHook register a new hook to the PostCreate hook functions
-func (r globalResolverHooks) RegisterNewGlobalPostCreateHook(hook GlobalPostCreateHookFn) {
+func (r globalResolverHooks) RegisterNewGlobalPostCreateHook(hook PostCreateHookFn) {
 	r.globalPostCreateHooksFn = append(r.globalPostCreateHooksFn, hook)
 }
 
 // RegisterNewGlobalPreUpdateHookrregister a new hook to the PreUpdate hook functions
-func (r globalResolverHooks) RegisterNewGlobalPreUpdateHook(hook GlobalPreUpdateHookFn) {
+func (r globalResolverHooks) RegisterNewGlobalPreUpdateHook(hook PreUpdateHookFn) {
 	r.globalPreUpdateHooksFn = append(r.globalPreUpdateHooksFn, hook)
 }
 
 // RegisterNewGlobalPostUpdateHook register a new hook to the PostUpdate hook functions
-func (r globalResolverHooks) RegisterNewGlobalPostUpdateHook(hook GlobalPostUpdateHookFn) {
+func (r globalResolverHooks) RegisterNewGlobalPostUpdateHook(hook PostUpdateHookFn) {
 	r.globalPostUpdateHooksFn = append(r.globalPostUpdateHooksFn, hook)
 }
 
 // RegisterNewGlobalPreDeleteHookrregister a new hook to the PreDelete hook functions
-func (r globalResolverHooks) RegisterNewGlobalPreDeleteHook(hook GlobalPreDeleteHookFn) {
+func (r globalResolverHooks) RegisterNewGlobalPreDeleteHook(hook PreDeleteHookFn) {
 	r.globalPreDeleteHooksFn = append(r.globalPreDeleteHooksFn, hook)
 }
 
 // RegisterNewGlobalPostDeleteHook register a new hook to the PostDelete hook functions
-func (r globalResolverHooks) RegisterNewGlobalPostDeleteHook(hook GlobalPostDeleteHookFn) {
+func (r globalResolverHooks) RegisterNewGlobalPostDeleteHook(hook PostDeleteHookFn) {
 	r.globalPostDeleteHooksFn = append(r.globalPostDeleteHooksFn, hook)
 }
 
