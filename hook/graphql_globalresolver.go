@@ -1,34 +1,34 @@
 package hook
 
 type (
-	// GlobalPreSingleHooksFn defines a map of entityname to resolver hook function
+	// GlobalPreSingleHooksFn defines a list of resolver hook function
 	GlobalPreSingleHooksFn []PreSingleHookFn
 
-	// GlobalPostSingleHooksFn defines a map of entityname to resolver hook function
+	// GlobalPostSingleHooksFn defines a list of resolver hook function
 	GlobalPostSingleHooksFn []PostSingleHookFn
 
-	// GlobalPreListingHooksFn defines a map of entityname to resolver hook function
+	// GlobalPreListingHooksFn defines a list of resolver hook function
 	GlobalPreListingHooksFn []PreListingHookFn
 
-	// GlobalPostListingHooksFn defines a map of entityname to resolver hook function
+	// GlobalPostListingHooksFn defines a list of resolver hook function
 	GlobalPostListingHooksFn []PostListingHookFn
 
-	// GlobalPreCreateHooksFn defines a map of entityname to resolver hook function
+	// GlobalPreCreateHooksFn defines a list of resolver hook function
 	GlobalPreCreateHooksFn []PreCreateHookFn
 
-	// GlobalPostCreateHooksFn defines a map of entityname to resolver hook function
+	// GlobalPostCreateHooksFn defines a list of resolver hook function
 	GlobalPostCreateHooksFn []PostCreateHookFn
 
-	// GlobalPreUpdateHooksFn defines a map of entityname to resolver hook function
+	// GlobalPreUpdateHooksFn defines a list of resolver hook function
 	GlobalPreUpdateHooksFn []PreUpdateHookFn
 
-	// GlobalPostUpdateHooksFn defines a map of entityname to resolver hook function
+	// GlobalPostUpdateHooksFn defines a list of resolver hook function
 	GlobalPostUpdateHooksFn []PostUpdateHookFn
 
-	// GlobalPreDeleteHooksFn defines a map of entityname to resolver hook function
+	// GlobalPreDeleteHooksFn defines a list of resolver hook function
 	GlobalPreDeleteHooksFn []PreDeleteHookFn
 
-	// GlobalPostDeleteHooksFn defines a map of entityname to resolver hook function
+	// GlobalPostDeleteHooksFn defines a list of resolver hook function
 	GlobalPostDeleteHooksFn []PostDeleteHookFn
 
 	// GlobalResolverHooks defines a list of common hooks for the various resolvers
