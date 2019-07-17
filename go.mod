@@ -1,6 +1,6 @@
 module go.lsl.digital/lardwaz/sdk
 
-replace go.lsl.digital/gocipe/reflex => ../reflex
+replace go.lsl.digital/lardwaz/reflex => ../reflex
 
 require (
 	github.com/gorilla/mux v1.7.3
