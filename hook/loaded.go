@@ -4,7 +4,7 @@ import "go.lsl.digital/lardwaz/sdk/config"
 
 type (
 	// LoadedHookFn defines the signature of the Loaded hook
-	LoadedHookFn func(config.Config) error
+	LoadedHookFn func(config.Config, string) error
 
 	// LoadedHook defines the Loaded hook
 	LoadedHook interface {
