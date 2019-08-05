@@ -21,4 +21,7 @@ const (
 
 	// String indicates a field having data type String
 	String = ":String:"
+
+	// File indicates a field having a file which may be transferred or saved.
+	File = ":File:"
 )
