@@ -14,13 +14,13 @@ type Contentable interface {
 
 //Content contains metadata on entity to allow them be treated as content types
 type content struct {
-	icon           string
-	visibility     string
-	label          string
-	labelField     string
-	description    string
-	entityType     string
-	pagination     int
+	icon        string
+	visibility  string
+	label       string
+	labelField  string
+	description string
+	entityType  string
+	pagination  int
 }
 
 //Icon to represent the content type in backoffice
@@ -61,12 +61,12 @@ func (c content) Pagination() int {
 //New is a helper to initialize a content instance
 func New(icon, visibility, label, labelField, description, entityType string, pagination int) Contentable {
 	return content{
-		icon:           icon,
-		visibility:     visibility,
-		label:          label,
-		labelField:     labelField,
-		description:    description,
-		entityType:     entityType,
-		pagination:     pagination,
+		icon:        icon,
+		visibility:  visibility,
+		label:       label,
+		labelField:  labelField,
+		description: description,
+		entityType:  entityType,
+		pagination:  pagination,
 	}
 }

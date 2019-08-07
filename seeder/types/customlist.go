@@ -1,12 +1,12 @@
-
 package types
+
 //CustomList has a list where each list seperated by comma ,
 type CustomList struct {
 	options string
 }
 
 //NewCustomList is a constructor for CustomList
-func NewCustomList( options string) CustomList {
+func NewCustomList(options string) CustomList {
 	return CustomList{
 		options: options,
 	}

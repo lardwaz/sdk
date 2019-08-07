@@ -1,13 +1,35 @@
 package hook
 
-import "github.com/graphql-go/graphql"
+import (
+	"context"
+
+	"github.com/graphql-go/graphql"
+)
+
+// ResolverHooksContextKey is the resolver hooks context key
+const ResolverHooksContextKey = "ResolverHooks"
+
+// GetResolverHooksFromCtx returns session from context
+func GetResolverHooksFromCtx(ctx context.Context) ResolverHooks {
+	ctxVal := ctx.Value(ResolverHooksContextKey)
+	if ctxVal == nil {
+		return nil
+	}
+
+	resolverHooks, ok := ctxVal.(ResolverHooks)
+	if !ok || resolverHooks == nil {
+		return nil
+	}
+
+	return resolverHooks
+}
 
 type (
 	// PreSingleHookFn defines the signature of resolver pre hook function
-	PreSingleHookFn func(*graphql.ResolveParams) error
+	PreSingleHookFn func(string, *graphql.ResolveParams) error
 
 	// PostSingleHookFn defines the signature of resolver post hook function
-	PostSingleHookFn func(*graphql.ResolveParams, interface{}) (interface{}, error)
+	PostSingleHookFn func(string, *graphql.ResolveParams, interface{}) (interface{}, error)
 
 	// PreSingleHooksFn defines a map of entityname to resolver hook function
 	PreSingleHooksFn map[string][]PreSingleHookFn
@@ -16,10 +38,10 @@ type (
 	PostSingleHooksFn map[string][]PostSingleHookFn
 
 	// PreListingHookFn defines the signature of resolver pre hook function
-	PreListingHookFn func(*graphql.ResolveParams) error
+	PreListingHookFn func(string, *graphql.ResolveParams) error
 
 	// PostListingHookFn defines the signature of resolver post hook function
-	PostListingHookFn func(*graphql.ResolveParams, []interface{}) ([]interface{}, error)
+	PostListingHookFn func(string, *graphql.ResolveParams, []interface{}) ([]interface{}, error)
 
 	// PreListingHooksFn defines a map of entityname to resolver hook function
 	PreListingHooksFn map[string][]PreListingHookFn
@@ -28,22 +50,22 @@ type (
 	PostListingHooksFn map[string][]PostListingHookFn
 
 	// PreCreateHookFn defines the signature of resolver pre hook function
-	PreCreateHookFn func(*graphql.ResolveParams) error
+	PreCreateHookFn func(string, *graphql.ResolveParams) error
 
 	// PreCreateHooksFn defines a map of entityname to resolver hook function
 	PreCreateHooksFn map[string][]PreCreateHookFn
 
 	// PostCreateHookFn defines the signature of resolver post hook function
-	PostCreateHookFn func(*graphql.ResolveParams, interface{}) (interface{}, error)
+	PostCreateHookFn func(string, *graphql.ResolveParams, interface{}) (interface{}, error)
 
 	// PostCreateHooksFn defines a map of entityname to resolver hook function
 	PostCreateHooksFn map[string][]PostCreateHookFn
 
 	// PreUpdateHookFn defines the signature of resolver pre hook function
-	PreUpdateHookFn func(*graphql.ResolveParams) error
+	PreUpdateHookFn func(string, *graphql.ResolveParams) error
 
 	// PostUpdateHookFn defines the signature of resolver post hook function
-	PostUpdateHookFn func(*graphql.ResolveParams, interface{}) (interface{}, error)
+	PostUpdateHookFn func(string, *graphql.ResolveParams, interface{}) (interface{}, error)
 
 	// PreUpdateHooksFn defines a map of entityname to resolver hook function
 	PreUpdateHooksFn map[string][]PreUpdateHookFn
@@ -52,10 +74,10 @@ type (
 	PostUpdateHooksFn map[string][]PostUpdateHookFn
 
 	// PreDeleteHookFn defines the signature of resolver pre hook function
-	PreDeleteHookFn func(*graphql.ResolveParams) error
+	PreDeleteHookFn func(string, *graphql.ResolveParams) error
 
 	// PostDeleteHookFn defines the signature of resolver post hook function
-	PostDeleteHookFn func(*graphql.ResolveParams, interface{}) (interface{}, error)
+	PostDeleteHookFn func(string, *graphql.ResolveParams, interface{}) (interface{}, error)
 
 	// PreDeleteHooksFn defines a map of entityname to resolver hook function
 	PreDeleteHooksFn map[string][]PreDeleteHookFn

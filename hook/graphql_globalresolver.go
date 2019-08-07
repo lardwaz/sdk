@@ -1,5 +1,25 @@
 package hook
 
+import "context"
+
+// GlobalResolverHooksContextKey is the global resolver hooks context key
+const GlobalResolverHooksContextKey = "GlobalResolverHooks"
+
+// GetGlobalResolverHooksFromCtx returns session from context
+func GetGlobalResolverHooksFromCtx(ctx context.Context) GlobalResolverHooks {
+	ctxVal := ctx.Value(GlobalResolverHooksContextKey)
+	if ctxVal == nil {
+		return nil
+	}
+
+	globalResolverHooks, ok := ctxVal.(GlobalResolverHooks)
+	if !ok || globalResolverHooks == nil {
+		return nil
+	}
+
+	return globalResolverHooks
+}
+
 type (
 	// GlobalPreSingleHooksFn defines a list of resolver hook function
 	GlobalPreSingleHooksFn []PreSingleHookFn
@@ -72,7 +92,7 @@ type (
 
 // NewGlobalResolverHooks return a new GlobalResolverHooks
 func NewGlobalResolverHooks() GlobalResolverHooks {
-	return globalResolverHooks{
+	return &globalResolverHooks{
 		globalPreSingleHooksFn:   make(GlobalPreSingleHooksFn, 0),
 		globalPostSingleHooksFn:  make(GlobalPostSingleHooksFn, 0),
 		globalPreListingHooksFn:  make(GlobalPreListingHooksFn, 0),
@@ -87,52 +107,52 @@ func NewGlobalResolverHooks() GlobalResolverHooks {
 }
 
 // RegisterNewGlobalPreSingleHookrregister a new hook to the PreSingle hook functions
-func (r globalResolverHooks) RegisterNewGlobalPreSingleHook(hook PreSingleHookFn) {
+func (r *globalResolverHooks) RegisterNewGlobalPreSingleHook(hook PreSingleHookFn) {
 	r.globalPreSingleHooksFn = append(r.globalPreSingleHooksFn, hook)
 }
 
 // RegisterNewGlobalPostSingleHook register a new hook to the PostSingle hook functions
-func (r globalResolverHooks) RegisterNewGlobalPostSingleHook(hook PostSingleHookFn) {
+func (r *globalResolverHooks) RegisterNewGlobalPostSingleHook(hook PostSingleHookFn) {
 	r.globalPostSingleHooksFn = append(r.globalPostSingleHooksFn, hook)
 }
 
 // RegisterNewGlobalPreListingHook register a new hook to the PreListing hook functions
-func (r globalResolverHooks) RegisterNewGlobalPreListingHook(hook PreListingHookFn) {
+func (r *globalResolverHooks) RegisterNewGlobalPreListingHook(hook PreListingHookFn) {
 	r.globalPreListingHooksFn = append(r.globalPreListingHooksFn, hook)
 }
 
 // RegisterNewGlobalPostListingHookgregister a new hook to the PostListing hook functions
-func (r globalResolverHooks) RegisterNewGlobalPostListingHook(hook PostListingHookFn) {
+func (r *globalResolverHooks) RegisterNewGlobalPostListingHook(hook PostListingHookFn) {
 	r.globalPostListingHooksFn = append(r.globalPostListingHooksFn, hook)
 }
 
 // RegisterNewGlobalPreCreateHookrregister a new hook to the PreCreate hook functions
-func (r globalResolverHooks) RegisterNewGlobalPreCreateHook(hook PreCreateHookFn) {
+func (r *globalResolverHooks) RegisterNewGlobalPreCreateHook(hook PreCreateHookFn) {
 	r.globalPreCreateHooksFn = append(r.globalPreCreateHooksFn, hook)
 }
 
 // RegisterNewGlobalPostCreateHook register a new hook to the PostCreate hook functions
-func (r globalResolverHooks) RegisterNewGlobalPostCreateHook(hook PostCreateHookFn) {
+func (r *globalResolverHooks) RegisterNewGlobalPostCreateHook(hook PostCreateHookFn) {
 	r.globalPostCreateHooksFn = append(r.globalPostCreateHooksFn, hook)
 }
 
 // RegisterNewGlobalPreUpdateHookrregister a new hook to the PreUpdate hook functions
-func (r globalResolverHooks) RegisterNewGlobalPreUpdateHook(hook PreUpdateHookFn) {
+func (r *globalResolverHooks) RegisterNewGlobalPreUpdateHook(hook PreUpdateHookFn) {
 	r.globalPreUpdateHooksFn = append(r.globalPreUpdateHooksFn, hook)
 }
 
 // RegisterNewGlobalPostUpdateHook register a new hook to the PostUpdate hook functions
-func (r globalResolverHooks) RegisterNewGlobalPostUpdateHook(hook PostUpdateHookFn) {
+func (r *globalResolverHooks) RegisterNewGlobalPostUpdateHook(hook PostUpdateHookFn) {
 	r.globalPostUpdateHooksFn = append(r.globalPostUpdateHooksFn, hook)
 }
 
 // RegisterNewGlobalPreDeleteHookrregister a new hook to the PreDelete hook functions
-func (r globalResolverHooks) RegisterNewGlobalPreDeleteHook(hook PreDeleteHookFn) {
+func (r *globalResolverHooks) RegisterNewGlobalPreDeleteHook(hook PreDeleteHookFn) {
 	r.globalPreDeleteHooksFn = append(r.globalPreDeleteHooksFn, hook)
 }
 
 // RegisterNewGlobalPostDeleteHook register a new hook to the PostDelete hook functions
-func (r globalResolverHooks) RegisterNewGlobalPostDeleteHook(hook PostDeleteHookFn) {
+func (r *globalResolverHooks) RegisterNewGlobalPostDeleteHook(hook PostDeleteHookFn) {
 	r.globalPostDeleteHooksFn = append(r.globalPostDeleteHooksFn, hook)
 }
 

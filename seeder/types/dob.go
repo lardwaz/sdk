@@ -1,10 +1,9 @@
-package types 
-
+package types
 
 //Dob has the option for Dob
 type Dob struct {
-	from int
-	to int
+	from   int
+	to     int
 	format string
 }
 
@@ -17,14 +16,14 @@ func NewDob(from, to int, format string) Dob {
 	}
 }
 
-func (d Dob) From () int {
-	 return d.from
+func (d Dob) From() int {
+	return d.from
 }
 
-func (d Dob) To () int {
- return d.to
+func (d Dob) To() int {
+	return d.to
 }
 
-func (d Dob) Format () string {
- return d.format
+func (d Dob) Format() string {
+	return d.format
 }

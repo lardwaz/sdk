@@ -1,10 +1,13 @@
 package hook
 
-import "go.lsl.digital/lardwaz/sdk/config"
+import (
+	"go.lsl.digital/lardwaz/sdk/config"
+	"go.lsl.digital/lardwaz/sdk/schematic"
+)
 
 type (
 	// LoadedHookFn defines the signature of the Loaded hook
-	LoadedHookFn func(config.Config, string) error
+	LoadedHookFn func(config.Config, schematic.Schematics, string) error
 
 	// LoadedHook defines the Loaded hook
 	LoadedHook interface {

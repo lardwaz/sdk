@@ -10,23 +10,26 @@ type (
 		DB() *sql.DB // Note: Don't like the ref!
 		BaseURL() string
 		PortAPI() int
+		PluginPath() string
 	}
 
 	config struct {
-		env     string
-		db      *sql.DB
-		baseURL string
-		portAPI int
+		env        string
+		db         *sql.DB
+		baseURL    string
+		portAPI    int
+		pluginPath string
 	}
 )
 
 // NewConfig returns a new Config
-func NewConfig(env string, db *sql.DB, baseURL string, portAPI int) Config {
+func NewConfig(env string, db *sql.DB, baseURL string, portAPI int, pluginPath string) Config {
 	return &config{
-		env:     env,
-		db:      db,
-		baseURL: baseURL,
-		portAPI: portAPI,
+		env:        env,
+		db:         db,
+		baseURL:    baseURL,
+		portAPI:    portAPI,
+		pluginPath: pluginPath,
 	}
 }
 
@@ -48,4 +51,9 @@ func (c *config) BaseURL() string {
 // PortAPI returns the PortAPI
 func (c *config) PortAPI() int {
 	return c.portAPI
+}
+
+// PluginPath returns the PluginPath
+func (c *config) PluginPath() string {
+	return c.pluginPath
 }

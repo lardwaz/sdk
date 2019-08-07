@@ -1,4 +1,3 @@
-
 package types
 
 //Datetime has the options of Datetime type
@@ -13,16 +12,16 @@ type Datetime struct {
 }
 
 //NewDatetime is a constructor for Datetime
-func NewDatetime(now bool,fromYY int,toYY int,fromTimeHH int,toTimeHH int,format string,timezone string) Datetime {
+func NewDatetime(now bool, fromYY int, toYY int, fromTimeHH int, toTimeHH int, format string, timezone string) Datetime {
 
-    return Datetime{
-		now: now,
-		fromYY: fromYY,
-		toYY: toYY,
+	return Datetime{
+		now:        now,
+		fromYY:     fromYY,
+		toYY:       toYY,
 		fromTimeHH: fromTimeHH,
-		toTimeHH: toTimeHH,
-		format: format,
-		timezone: timezone,
+		toTimeHH:   toTimeHH,
+		format:     format,
+		timezone:   timezone,
 	}
 }
 

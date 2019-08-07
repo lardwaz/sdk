@@ -1,4 +1,3 @@
-
 package types
 
 //Number has the options for Number type
@@ -8,7 +7,6 @@ type Number struct {
 	val int
 }
 
-
 //Min is a helper function that implements Min() method from Number Interface
 func (n Number) Min() int {
 	return n.min
@@ -16,8 +14,8 @@ func (n Number) Min() int {
 
 //NewNumber is a constructor for Number
 func NewNumber(min, max, val int) Number {
-	return  Number {
-		min: min, max:max, val:val,
+	return Number{
+		min: min, max: max, val: val,
 	}
 }
 
@@ -30,7 +28,6 @@ func (n Number) Max() int {
 func (n Number) Val() int {
 	return n.val
 }
-
 
 // //SetMin is a helper function that implements SetMin() method from Number Interface
 // func (n Number) SetMin(min int)  {
