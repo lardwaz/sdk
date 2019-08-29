@@ -206,6 +206,19 @@ func OnUninstall() hook.UninstallHook {
 
 Entities provided by the plugin.
 
+Below is a list of available struct tags:
+
+| Name                	| Description                                               	| Type                    	| Usage                                                                                                                                                                                         	|
+|---------------------	|-----------------------------------------------------------	|-------------------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| json                	| Defines object key name when marshaling to/from JSON      	| string                  	| `json:"created_at"`                                                                                                                                                                           	|
+| label               	| Defines label text used in backoffice                     	| string                  	| `label:"Created At"`                                                                                                                                                                          	|
+| sortable            	| Defines if field is sortable in backoffice                	| bool                    	| `sortable:"true"` `sortable:"false"` // can be omitted                                                                                                                                        	|
+| widget_edit_type    	| Defines the type of widget in edit form of backoffice     	| string                  	| `widget_edit_type:"any"` `widget_edit_type:"builder_content"` `widget_edit_type:"profile"` `widget_edit_type:"builder_simple"` `widget_edit_type:"date-readonly"` `widget_edit_type:"status"` 	|
+| widget_edit_hide    	| Defines if widget appears in edit form of backoffice      	| bool                    	| `widget_edit_hide:"true"` `widget_edit_hide:"false"`                                                                                                                                          	|
+| widget_edit_options 	| Defines the option list values in edit form of backoffice 	| string(comma-delimited) 	| `widget_edit_options:"Draft, Saved, Published, Cancelled"`                                                                                                                                    	|
+| widget_list_type    	| Defines the type of widget in listing page of backoffice  	| string                  	| `widget_list_type:"any"` `widget_list_type:"date"`                                                                                                                                            	|
+| widget_list_hide    	| Defines if field appears in listing page of backoffice    	| bool                    	| `widget_list_hide:"true"` `widget_list_hide:"false"` // can be omitted                                                                                                                        	|
+
 In this example, we return the entity `Tag` with fields `ID` and `Name`. 
 
 ```go
