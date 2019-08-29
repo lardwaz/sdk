@@ -250,7 +250,8 @@ func GetAuthProvider() authsdk.ProviderFn {
 
 #### GetCommandHook
 
-Registers new cobra commands.
+Registers new cobra commands.<br />
+To learn more about `cobra`, [click here](https://github.com/spf13/cobra)!
 
 ```go
 func GetCommandHook() hook.CommandHook {
@@ -276,7 +277,8 @@ func GetCommandHook() hook.CommandHook {
 
 #### GetHTTPHooks
 
-Exposes the lardwaz `mux.Router` for obvious routing usages.
+Exposes the lardwaz `mux.Router` for obvious routing usages.<br />
+To learn more about `gorilla mux router`, [click here](https://github.com/gorilla/mux)!
 
 ```go
 func GetHTTPHooks() hook.HTTPHooks {
@@ -295,7 +297,8 @@ func GetHTTPHooks() hook.HTTPHooks {
 
 #### GetSchemaHooks
 
-Allows for registering of new GraphQL `Queries` and `Mutations`.
+Allows for registering of new graphql-go `Queries` and `Mutations`.<br />
+To learn more about `graphql-go`, [click here](https://github.com/graphql-go/graphql)!
 
 ```go
 func GetSchemaHooks() hook.SchemaHooks {
@@ -343,7 +346,8 @@ func GetSchemaHooks() hook.SchemaHooks {
 
 #### GetResolverHooks
 
-Allows for registering entity-level `pre` and `post` GraphQL `resolver` hooks.
+Allows for registering entity-level `pre` and `post` GraphQL `resolver` hooks.<br />
+To learn more about `graphql-go`, [click here](https://github.com/graphql-go/graphql)!
 
 ```go
 func GetResolverHooks() hook.ResolverHooks {
@@ -371,7 +375,8 @@ func GetResolverHooks() hook.ResolverHooks {
 
 #### GetGlobalResolverHooks
 
-Allows for registering resolver-level `pre` and `post` GraphQL `resolver` hooks.
+Allows for registering resolver-level `pre` and `post` GraphQL `resolver` hooks.<br />
+To learn more about `graphql-go`, [click here](https://github.com/graphql-go/graphql)!
 
 ```go
 func GetGlobalResolverHooks() hook.GlobalResolverHooks {
