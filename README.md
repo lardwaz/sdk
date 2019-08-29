@@ -8,38 +8,16 @@ The Go implementation of Lardwaz SDK.
   - [Example Plugin](#example-plugin)
   - [Plugin Symbols](#plugin-symbols)
       - [GetPluginInfo](#getplugininfo)
-        - [Description](#description)
-        - [Example](#example)
       - [OnLoaded](#onloaded)
-        - [Description](#description-1)
-        - [Example](#example-1)
       - [OnInstall](#oninstall)
-        - [Description](#description-2)
-        - [Example](#example-2)
       - [OnUninstall](#onuninstall)
-        - [Description](#description-3)
-        - [Example](#example-3)
       - [GetEntities](#getentities)
-        - [Description](#description-4)
-        - [Example](#example-4)
       - [GetAuthProvider](#getauthprovider)
-        - [Description](#description-5)
-        - [Example](#example-5)
       - [GetCommandHook](#getcommandhook)
-        - [Description](#description-6)
-        - [Example](#example-6)
       - [GetHTTPHooks](#gethttphooks)
-        - [Description](#description-7)
-        - [Example](#example-7)
       - [GetSchemaHooks](#getschemahooks)
-        - [Description](#description-8)
-        - [Example](#example-8)
       - [GetResolverHooks](#getresolverhooks)
-        - [Description](#description-9)
-        - [Example](#example-9)
       - [GetGlobalResolverHooks](#getglobalresolverhooks)
-        - [Description](#description-10)
-        - [Example](#example-10)
 
 ---
 
@@ -146,7 +124,7 @@ An overview of the various plugin symbols exposed by the sdk.
 
 #### GetPluginInfo
 
-##### Description
+##### Description  <!-- omit in toc --> 
 
 Meta information about the plugin.
  - Name
@@ -158,7 +136,7 @@ Meta information about the plugin.
  - Version
  - Dependencies
 
-##### Example
+##### Example  <!-- omit in toc --> 
 
 ```go
 func GetPluginInfo() info.Info {
@@ -168,11 +146,11 @@ func GetPluginInfo() info.Info {
 
 #### OnLoaded
 
-##### Description
+##### Description  <!-- omit in toc --> 
 
 Code to execute when plugin has loaded
 
-##### Example
+##### Example  <!-- omit in toc --> 
 
 ```go
 func OnLoaded() hook.LoadedHook {
@@ -190,11 +168,11 @@ func OnLoaded() hook.LoadedHook {
 
 #### OnInstall
 
-##### Description
+##### Description  <!-- omit in toc --> 
 
 Code to execute when plugin is installed.
 
-##### Example
+##### Example  <!-- omit in toc --> 
 
 ```go
 func OnInstall() hook.InstallHook {
@@ -212,11 +190,11 @@ func OnInstall() hook.InstallHook {
 
 #### OnUninstall
 
-##### Description
+##### Description  <!-- omit in toc --> 
 
 Code to execute when plugin is uninstalled.
 
-##### Example
+##### Example  <!-- omit in toc --> 
 
 ```go
 func OnUninstall() hook.UninstallHook {
@@ -234,11 +212,11 @@ func OnUninstall() hook.UninstallHook {
 
 #### GetEntities
 
-##### Description
+##### Description  <!-- omit in toc --> 
 
 Entities provided by the plugin.
 
-##### Example
+##### Example  <!-- omit in toc --> 
 
 In this example, we return the entity `Tag` with fields `ID` and `Name`. 
 
@@ -276,11 +254,11 @@ func GetEntities() []entity.Entity {
 
 #### GetAuthProvider
 
-##### Description
+##### Description  <!-- omit in toc --> 
 
 Defines a valid `auth.Provider` implementation.
 
-##### Example
+##### Example  <!-- omit in toc --> 
 
 ```go
 func GetAuthProvider() authsdk.ProviderFn {
@@ -296,11 +274,11 @@ func GetAuthProvider() authsdk.ProviderFn {
 
 #### GetCommandHook
 
-##### Description
+##### Description  <!-- omit in toc --> 
 
 Registers new cobra commands.
 
-##### Example
+##### Example  <!-- omit in toc --> 
 
 ```go
 func GetCommandHook() hook.CommandHook {
@@ -326,11 +304,11 @@ func GetCommandHook() hook.CommandHook {
 
 #### GetHTTPHooks
 
-##### Description
+##### Description  <!-- omit in toc --> 
 
 Exposes the lardwaz `mux.Router` for obvious routing usages.
 
-##### Example
+##### Example  <!-- omit in toc --> 
 
 ```go
 func GetHTTPHooks() hook.HTTPHooks {
@@ -349,11 +327,11 @@ func GetHTTPHooks() hook.HTTPHooks {
 
 #### GetSchemaHooks
 
-##### Description
+##### Description  <!-- omit in toc --> 
 
 Allows for registering of new GraphQL `Queries` and `Mutations`.
 
-##### Example
+##### Example  <!-- omit in toc --> 
 
 ```go
 func GetSchemaHooks() hook.SchemaHooks {
@@ -401,11 +379,11 @@ func GetSchemaHooks() hook.SchemaHooks {
 
 #### GetResolverHooks
 
-##### Description
+##### Description  <!-- omit in toc --> 
 
 Allows for registering entity-level `pre` and `post` GraphQL `resolver` hooks.
 
-##### Example
+##### Example  <!-- omit in toc --> 
 
 ```go
 func GetResolverHooks() hook.ResolverHooks {
@@ -433,11 +411,11 @@ func GetResolverHooks() hook.ResolverHooks {
 
 #### GetGlobalResolverHooks
 
-##### Description
+##### Description  <!-- omit in toc --> 
 
 Allows for registering resolver-level `pre` and `post` GraphQL `resolver` hooks.
 
-##### Example
+##### Example  <!-- omit in toc --> 
 
 ```go
 func GetGlobalResolverHooks() hook.GlobalResolverHooks {
