@@ -2,15 +2,55 @@
 
 The Go implementation of Lardwaz SDK.
 
-------
+---
+- [Lardwaz Go SDK](#lardwaz-go-sdk)
+  - [Getting Started](#getting-started)
+  - [Example Plugin](#example-plugin)
+  - [Plugin Symbols](#plugin-symbols)
+      - [GetPluginInfo](#getplugininfo)
+        - [Description](#description)
+        - [Example](#example)
+      - [OnLoaded](#onloaded)
+        - [Description](#description-1)
+        - [Example](#example-1)
+      - [OnInstall](#oninstall)
+        - [Description](#description-2)
+        - [Example](#example-2)
+      - [OnUninstall](#onuninstall)
+        - [Description](#description-3)
+        - [Example](#example-3)
+      - [GetEntities](#getentities)
+        - [Description](#description-4)
+        - [Example](#example-4)
+      - [GetAuthProvider](#getauthprovider)
+        - [Description](#description-5)
+        - [Example](#example-5)
+      - [GetCommandHook](#getcommandhook)
+        - [Description](#description-6)
+        - [Example](#example-6)
+      - [GetHTTPHooks](#gethttphooks)
+        - [Description](#description-7)
+        - [Example](#example-7)
+      - [GetSchemaHooks](#getschemahooks)
+        - [Description](#description-8)
+        - [Example](#example-8)
+      - [GetResolverHooks](#getresolverhooks)
+        - [Description](#description-9)
+        - [Example](#example-9)
+      - [GetGlobalResolverHooks](#getglobalresolverhooks)
+        - [Description](#description-10)
+        - [Example](#example-10)
 
-### Getting Started
+---
+
+## Getting Started
 To install the library, run:
 
-```
+```sh
 go get go.lsl.digital/lardwaz/sdk
 ```
 
+## Example Plugin
 The following is a very simple plugin implemented using Lardwaz Go SDK.
 
 ```go
@@ -98,13 +138,15 @@ func GetEntities() []entity.Entity {
 }
 ```
 
-------
+---
 
-### Plugin Symbols
+## Plugin Symbols
 
 An overview of the various plugin symbols exposed by the sdk.
 
 #### GetPluginInfo
+
+##### Description
 
 Meta information about the plugin.
  - Name
@@ -126,6 +168,8 @@ func GetPluginInfo() info.Info {
 
 #### OnLoaded
 
+##### Description
+
 Code to execute when plugin has loaded
 
 ##### Example
@@ -145,6 +189,8 @@ func OnLoaded() hook.LoadedHook {
 ```
 
 #### OnInstall
+
+##### Description
 
 Code to execute when plugin is installed.
 
@@ -166,6 +212,8 @@ func OnInstall() hook.InstallHook {
 
 #### OnUninstall
 
+##### Description
+
 Code to execute when plugin is uninstalled.
 
 ##### Example
@@ -185,6 +233,8 @@ func OnUninstall() hook.UninstallHook {
 ```
 
 #### GetEntities
+
+##### Description
 
 Entities provided by the plugin.
 
@@ -226,6 +276,8 @@ func GetEntities() []entity.Entity {
 
 #### GetAuthProvider
 
+##### Description
+
 Defines a valid `auth.Provider` implementation.
 
 ##### Example
@@ -243,6 +295,8 @@ func GetAuthProvider() authsdk.ProviderFn {
 ```
 
 #### GetCommandHook
+
+##### Description
 
 Registers new cobra commands.
 
@@ -272,6 +326,8 @@ func GetCommandHook() hook.CommandHook {
 
 #### GetHTTPHooks
 
+##### Description
+
 Exposes the lardwaz `mux.Router` for obvious routing usages.
 
 ##### Example
@@ -292,6 +348,8 @@ func GetHTTPHooks() hook.HTTPHooks {
 ```
 
 #### GetSchemaHooks
+
+##### Description
 
 Allows for registering of new GraphQL `Queries` and `Mutations`.
 
@@ -343,6 +401,8 @@ func GetSchemaHooks() hook.SchemaHooks {
 
 #### GetResolverHooks
 
+##### Description
+
 Allows for registering entity-level `pre` and `post` GraphQL `resolver` hooks.
 
 ##### Example
@@ -372,6 +432,8 @@ func GetResolverHooks() hook.ResolverHooks {
 ```
 
 #### GetGlobalResolverHooks
+
+##### Description
 
 Allows for registering resolver-level `pre` and `post` GraphQL `resolver` hooks.
 
