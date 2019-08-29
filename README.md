@@ -18,6 +18,7 @@ The Go implementation of Lardwaz SDK.
       - [GetSchemaHooks](#getschemahooks)
       - [GetResolverHooks](#getresolverhooks)
       - [GetGlobalResolverHooks](#getglobalresolverhooks)
+
 ---
 
 ## Getting Started
