@@ -9,6 +9,7 @@ type File struct {
 	Filename string `json:"filename"`
 	MIMEType string `json:"mimetype"`
 	Filepath string `json:"filepath"`
+	Size     int    `json:"size"`
 }
 
 // New creates a new instance of File from a json string
