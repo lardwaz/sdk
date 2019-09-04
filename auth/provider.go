@@ -9,6 +9,12 @@ type Provider interface {
 	// Name returns the name of provider
 	Name() string
 
+	// Options returns the provider options
+	Options() *Options
+
+	// SetOptions sets the provider options
+	SetOptions(options *Options)
+
 	// Endpoints returns the provider endpoints
 	Endpoints() *Endpoints
 

@@ -7,5 +7,4 @@ type Endpoints struct {
 	Profile        string `json:"profile"`
 	ForgetPassword string `json:"forget_password"`
 	Register       string `json:"register"`
-	GuardianLib    string `json:"guardian_lib"`
 }
