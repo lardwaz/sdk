@@ -1,16 +1,21 @@
 package config
 
-import "database/sql"
+import (
+	"database/sql"
+
+	log "github.com/sirupsen/logrus"
+)
 
 type (
 	// Config from lardwaz app
 	// TODO: might need to augment
 	Config interface {
 		Env() string
-		DB() *sql.DB // Note: Don't like the ref!
+		DB() *sql.DB // FIXME: Don't like the ref!
 		BaseURL() string
 		PortAPI() int
 		PluginPath() string
+		Logger() *log.Entry
 	}
 
 	config struct {
@@ -19,17 +24,19 @@ type (
 		baseURL    string
 		portAPI    int
 		pluginPath string
+		logger     *log.Entry
 	}
 )
 
 // NewConfig returns a new Config
-func NewConfig(env string, db *sql.DB, baseURL string, portAPI int, pluginPath string) Config {
+func NewConfig(env string, db *sql.DB, baseURL string, portAPI int, pluginPath string, logger *log.Entry) Config {
 	return &config{
 		env:        env,
 		db:         db,
 		baseURL:    baseURL,
 		portAPI:    portAPI,
 		pluginPath: pluginPath,
+		logger:     logger,
 	}
 }
 
@@ -56,4 +63,9 @@ func (c *config) PortAPI() int {
 // PluginPath returns the PluginPath
 func (c *config) PluginPath() string {
 	return c.pluginPath
+}
+
+// Logger returns the Logger
+func (c *config) Logger() *log.Entry {
+	return c.logger
 }
