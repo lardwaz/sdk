@@ -57,14 +57,22 @@ type OptionsFormat interface {
 	SetWidth(w int)
 	Height() int
 	SetHeight(h int)
-	Backdrop() bool
-	SetBackdrop(b bool)
+	Backdrop() OptionsBackdrop
+	SetBackdrop(opts ...func(OptionsBackdrop))
 	Watermark() OptionsWatermark
 	SetWatermark(opts ...func(OptionsWatermark))
 }
 
+// OptionsBackdrop represents a set of backdrop processing options
+type OptionsBackdrop interface {
+	Path() string
+	SetPath(p string)
+}
+
 // OptionsWatermark represents a set of watermark processing options
 type OptionsWatermark interface {
+	Path() string
+	SetPath(p string)
 	Horizontal() int
 	SetHorizontal(h int)
 	Vertical() int
