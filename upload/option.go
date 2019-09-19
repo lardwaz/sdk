@@ -31,7 +31,7 @@ type OptionsImage interface {
 	SetFormats(opts OptionsFormats)
 }
 
-// OptionsFormats represents a list of OptionsFormats
+// OptionsFormats represents a list of OptionsFormat
 type OptionsFormats interface {
 	// Filter returns a OptionsFormats collection without elements filtered by fn (returning false)
 	Filter(fn func(name string, item OptionsFormat) bool) OptionsFormats
