@@ -4,6 +4,12 @@ import (
 	"github.com/h2non/filetype/types"
 )
 
+// OptionsENV represents ENV(DEV / PROD) options
+type OptionsENV interface {
+	IsPROD() bool
+	SetPROD(b bool)
+}
+
 // Options represents a set of upload options
 type Options interface {
 	Dir() string
@@ -23,6 +29,7 @@ type Options interface {
 
 // OptionsImage represents a set of image processing options
 type OptionsImage interface {
+	OptionsENV
 	MinWidth() int
 	SetMinWidth(w int)
 	MinHeight() int
