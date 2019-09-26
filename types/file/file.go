@@ -2,14 +2,17 @@ package file
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // File represents a file which may be transferred or saved.
 type File struct {
-	Filename string `json:"filename"`
-	MIMEType string `json:"mimetype"`
-	Filepath string `json:"filepath"`
-	Size     int    `json:"size"`
+	ID        string    `json:"id"`
+	Filename  string    `json:"filename"`
+	MIMEType  string    `json:"mimetype"`
+	Filepath  string    `json:"filepath"`
+	Size      int       `json:"size"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 // New creates a new instance of File from a json string
