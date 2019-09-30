@@ -7,7 +7,7 @@ import (
 
 type (
 	// LoadedHookFn defines the signature of the Loaded hook
-	LoadedHookFn func(config.Config, schematic.Schematics, string) error
+	LoadedHookFn func(config.Config, map[string]schematic.Schematics, string) error
 
 	// LoadedHook defines the Loaded hook
 	LoadedHook interface {
