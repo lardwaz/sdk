@@ -20,6 +20,9 @@ type Schematics interface {
 
 	// Length returns the number of items in the collection
 	Length() int
+
+	// Extend extends a collection with another
+	Extend(schematics Schematics)
 }
 
 // Schematic represents metadata extracted from an entity Meta
