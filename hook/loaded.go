@@ -7,7 +7,8 @@ import (
 
 type (
 	// LoadedHookFn defines the signature of the Loaded hook
-	LoadedHookFn func(config.Config, map[string]schematic.Schematics, string) error
+	// Parameters are configuration, plugin -> schematics, plugin_setting_name -> val
+	LoadedHookFn func(config.Config, map[string]schematic.Schematics, map[string]interface{}) error
 
 	// LoadedHook defines the Loaded hook
 	LoadedHook interface {
