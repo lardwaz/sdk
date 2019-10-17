@@ -33,6 +33,9 @@ type Schematic interface {
 	// Entity returns the entity represented by the schematic
 	Entity() entity.Entity
 
+	// Group returns the category this schematic should be grouped in
+	Group() string
+
 	// Fields returns fields contained within the schematic
 	Fields() Fields
 
